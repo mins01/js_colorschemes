@@ -1,0 +1,20 @@
+{
+  "name": "colorschemes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testNode.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "color",
+    "scheme"
+  ],
+  "author": "공대여자",
+  "license": "SEE LICENSE IN LICENSE",
+  "exports": {
+    "require": "./bundle/colorschemeSets.min.cjs",
+    "import": "./bundle/colorschemeSets.min.mjs"
+  }
+}
