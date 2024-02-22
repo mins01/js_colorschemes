@@ -19,8 +19,8 @@
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script> -->
 
     <!-- 부트스트랩 5.3.x -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
 
     <!-- vue.js -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
@@ -38,11 +38,53 @@
     <!-- //meta og -->
 
     <script type="module" src="test/test_dist.js"></script>
-    
-    
+    <script type="module">
+        import Colorschemes from "./dist/Colorschemes.min.js";
+        import colorschemeSets from "./dist/colorschemeSets.min.js";
+        Colorschemes.debug = false;
+        Colorschemes.schemeSets = colorschemeSets;
+        globalThis.Colorschemes = Colorschemes;
+        // globalThis.colorschemeSets = colorschemeSets;
+
+    </script>
+    <script>
+        window.addEventListener('load',(event)=>{
+            const div_schemes = document.querySelector('#div_schemes');
+            for(let k in Colorschemes.schemeSets){
+                let cs = Colorschemes.schemeSets[k];
+                let div_row = document.createElement('div');
+                div_row.className = 'row mb-3'
+                let div_k = document.createElement('div');
+                div_k.className = 'col-12 col-lg-2 col-md-4 text-break';
+                div_k.textContent = `${k} (${cs.length})`;
+
+                let div_cs = document.createElement('div');
+                div_cs.className = 'col-12 col-lg-10 col-md-8';
+                div_row.appendChild(div_k);
+                div_row.appendChild(div_cs);
+                div_schemes.appendChild(div_row);
+                cs.forEach(c => {
+                    let div_c = document.createElement('div');
+                    div_c.className = 'd-inline-block div-c';
+                    div_c.style.backgroundColor = c;
+                    div_c.textContent = c;
+                    div_cs.appendChild(div_c)
+                });
+
+            }
+        })
+    </script>
+    <style>
+        .div-c{width: 10em; text-align: center;}
+    </style>
 </head>
 <body>
     <div class="container">
+        <h1>colorschemes</h1>
+        <div id="div_schemes" style="font-size: 12px;">
+
+        </div>
+        
     </div>
 </body>
 </html>
