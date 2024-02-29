@@ -40,11 +40,20 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
     <script>
+        Chart.defaults.font.size = 12;
         Chart.defaults.elements.line.borderWidth = 1;
         Chart.defaults.elements.bar.borderWidth = 0;
         Chart.defaults.elements.point.pointStyle = false;
-        Chart.defaults.plugins.legend.labels.boxWidth = 10;
-        Chart.defaults.plugins.legend.labels.boxHeight = 10;
+       
+        Chart.defaults.plugins.legend.labels.boxWidth = Chart.defaults.font.size;
+        Chart.defaults.plugins.legend.labels.boxHeight = Chart.defaults.font.size;
+
+        Chart.register(ChartDataLabels);
+        Chart.defaults.plugins.datalabels.display = false; // 사용시 바꾸시오
+        Chart.defaults.plugins.datalabels.font.size = 12;
+        Chart.defaults.plugins.datalabels.color = '#fff';
+        Chart.defaults.plugins.datalabels.textStrokeColor = '#000';
+        Chart.defaults.plugins.datalabels.textStrokeWidth = 4;
     </script>
     <script type="module" src="test/test_dist.js"></script>
     <script type="module">
@@ -124,7 +133,7 @@
                             font: {
                                 size: 20
                             }
-                        }
+                        },
                     },
                     layout: {
                         padding: 5
@@ -172,6 +181,9 @@
                             font: {
                                 size: 20
                             }
+                        },
+                        datalabels:{
+                            display:true,
                         }
                     },
                     layout: {
